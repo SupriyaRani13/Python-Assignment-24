@@ -1,0 +1,272 @@
+Python Assignment - 24
+
+1. What is the relationship between def statements and lambda expressions ?
+
+Sol: def statements and lambda expressions are both ways to define functions in Python, but they have some key differences in terms of syntax,
+     functionality, and use cases.
+
+ a) A def statement is used to define a regular named function in Python.
+ b) It consists of the keyword def, followed by the function name, a pair of parentheses for the arguments, a colon, and a block of indented code
+    that forms  the function body.
+ c) It allows you to define complex functions with multiple statements, including loops, conditionals, and other control structures.
+ d) We can give the function a meaningful name, making the code more readable and maintainable.
+ e) Functions defined using def can have multiple lines and can include docstrings to provide documentation for the function's purpose and usage.
+
+Eg - def add(a, b):
+    return a + b
+
+
+Lambda Expressions:-
+
+a) A lambda expression (also known as a lambda function) is a concise way to define small, anonymous functions.
+b) It is created using the lambda keyword, followed by the function's arguments, a colon, and a single expression that is evaluated and 
+   returned when the lambda is called.
+c) Lambdas are limited to a single expression and cannot contain multiple statements or complex logic.
+d) Lambdas are often used for simple operations where defining a full function using def would be overkill, such as for sorting or filtering data.
+e) Lambda functions are commonly used as arguments to higher-order functions like map, filter, and sorted.
+
+
+Eg - add = lambda a, b: a + b
+
+
+
+2. What is the benefit of lambda?
+
+Sol: Lambda expressions in Python offer several benefits due to their concise syntax and specific use cases:-
+
+1. Concise Code: Lambda expressions allow you to define small, simple functions in a single line of code. This can make your code more readable and
+   reduce the overhead of defining full named functions for very simple operations.
+
+2. Anonymous Functions: Lambdas are anonymous functions, which means you don't need to assign them a name. This is useful when you only need the
+   function temporarily, like passing it as an argument to another function.
+
+3. Functional Programming: Lambda expressions align well with functional programming principles, where functions are treated as first-class citizens.
+   You can pass lambdas as arguments to higher-order functions like map, filter, and sorted.
+
+4. Reduced Overhead: For simple operations, defining a full named function using def might introduce unnecessary overhead in terms of function 
+   creation and memory usage. Lambdas can be more memory-efficient in such cases.
+
+5. Inline Usage: Lambdas are often used for inline operations like sorting, filtering, and transforming data. They can enhance the readability of 
+    our code by keeping the operation close to where it's being used.
+
+
+3. Compare and contrast map, filter, and reduce.
+
+Sol: map Function:
+
+The map function applies a given function to each item in an iterable and returns an iterator containing the results.
+It takes two arguments: the function to apply and the iterable to apply it to.
+map is useful for transforming data by applying the same operation to each element of an iterable.
+The returned result is an iterator, so you often need to convert it to a list or another iterable type to see the actual results.
+
+Eg - numbers = [1, 2, 3, 4, 5]
+squared = map(lambda x: x ** 2, numbers)
+squared_list = list(squared)
+
+
+filter Function:
+
+The filter function filters the items in an iterable based on a given function (a predicate) and returns an iterator containing only the items that satisfy the condition.
+It takes two arguments: the function that defines the condition and the iterable to filter.
+filter is used when you want to extract elements from an iterable that meet a specific condition.
+Like map, the result is an iterator, so you often convert it to a list or another iterable type to access the filtered elements.
+
+Eg - numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_numbers = filter(lambda x: x % 2 == 0, numbers)
+even_list = list(even_numbers)
+
+
+reduce Function:
+
+The reduce function is used to apply a rolling computation to sequential pairs of elements in an iterable. It's often used for tasks like calculating cumulative results.
+Before Python 3.8, reduce was a built-in function, but in Python 3.8 and later, it's available in the functools module.
+It takes three arguments: the function to apply, the iterable to operate on, and an optional initial value.
+Unlike map and filter, reduce doesn't return an iterator; it returns a single result after iteratively applying the function to the elements.
+
+
+ Eg - from functools import reduce
+numbers = [1, 2, 3, 4, 5]
+sum_result = reduce(lambda x, y: x + y, numbers)
+
+
+
+4. What are function annotations, and how are they used?
+
+Sol: Function annotations in Python are a way to provide additional information about the types of function parameters and return values. They are not enforced by the Python interpreter, but they serve as a form of documentation that can help developers understand the intended usage of a function. Function annotations are specified using colons and expressions within parentheses after the parameter names and the return value of a function.
+
+Syntax: def function_name(parameter: annotation_type, ...) -> return_type:
+    # Function body
+
+Eg - def add(a: int, b: int) -> int:
+    return a + b
+
+
+Function annotations are commonly used for the following purposes:-
+
+1. Documentation: Annotations provide a clear indication of the expected types for function parameters and return values, improving code readability and maintainability.
+
+2. Type Checking: While Python itself doesn't enforce annotations, external tools like mypy can analyze your code and provide static type checking to catch type-related errors.
+
+3. Code Readability: Annotations help other developers understand the intended use of a function without having to read the implementation details.
+
+4. IDE Support: Integrated Development Environments (IDEs) that support type checking can use annotations to provide better code completion and suggestions.
+
+
+
+5. What are recursive functions, and how are they used?
+
+Sol: A recursive function is a function that calls itself directly or indirectly in order to solve a problem. Recursion is a powerful concept in programming and can be used to solve complex problems by breaking them down into simpler subproblems. Recursive functions follow a divide-and-conquer approach, where a problem is divided into smaller instances of the same problem until a base case is reached, at which point the recursion stops and the solutions of the smaller instances are combined to solve the original problem.
+
+
+Eg - def factorial(n):
+    if n == 0:
+        return 1  # Base case: factorial of 0 is 1
+    else:
+        return n * factorial(n - 1)  # Recursive case: n! = n * (n-1)!
+
+
+The basic structure of a recursive function:-
+
+1. Base Case(s): These are the simplest cases where the function does not make a recursive call and returns a straightforward result. Base cases are essential to ensure that the recursion eventually stops.
+
+2. Recursive Case(s): These are the cases where the function calls itself with modified arguments to solve a smaller subproblem. Each recursive call should bring the problem closer to the base case.
+
+
+
+6. What are some general design guidelines for coding functions?
+
+Sol: Designing functions is a critical aspect of writing maintainable and efficient code. Well-designed functions are easier to read, 
+     understand, test, and maintain.
+
+1. Single Responsibility Principle (SRP): Each function should have a clear and single responsibility. It should do one thing and do it well. If a function is trying to accomplish too many tasks, consider breaking it down into smaller functions.
+
+2. Keep Functions Small: Functions should be concise and focused. Aim for functions that fit within a screen or two of code. Smaller functions are easier to comprehend and debug.
+
+3. Descriptive Names: Choose descriptive and meaningful names for functions. The name should convey the purpose of the function and make its usage clear.
+
+4. Avoid Side Effects: Minimize or avoid side effects (modifying external variables, performing I/O, etc.) within functions. Functions that only perform computations and return results are generally easier to reason about.
+
+
+
+7. Name three or more ways that functions can communicate results to a caller.
+
+Sol:  Functions in programming can communicate results to a caller in several ways. Here are three common ways functions can return results to the caller:-
+
+1. Return Statements: Functions can use the return statement to send a value back to the caller. The returned value can be any data type, such as integers, strings, lists, objects, etc. The caller can capture this returned value and use it for further processing.
+
+Eg - def add(a, b):
+    return a + b
+
+result = add(3, 5)  # result will be 8
+
+
+2. Modifying Mutable Objects: Functions can modify mutable objects (like lists, dictionaries, etc.) that are passed as arguments. Since mutable objects are passed by reference, changes made to them within the function are reflected outside the function as well.
+
+Eg - def append_element(lst, element):
+    lst.append(element)
+
+my_list = [1, 2, 3]
+append_element(my_list, 4)
+# Now my_list will be [1, 2, 3, 4]
+
+
+3. Using Global Variables: While not always recommended due to potential side effects, functions can modify or use global variables to communicate results. Changes to global variables within functions are visible outside the function's scope.
+
+Eg - count = 0
+
+def increment_count():
+    global count
+    count += 1
+
+increment_count()
+# Now count will be 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
